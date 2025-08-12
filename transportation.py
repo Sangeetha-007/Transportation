@@ -1,6 +1,12 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from os import path
+from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+from wordcloud import WordCloud, STOPWORDS
 
 accident=pd.read_csv("/Users/sangeetha/Downloads/FARS2023NationalCSV/accident.csv")
 
@@ -29,4 +35,24 @@ plt.xlabel('State')
 plt.ylabel('Number of Casualities')
 plt.title('Number of Deaths from a Car Accident in 2023')
 plt.tight_layout()
-plt.show()
+plt.show() 
+
+# Define stopwords (optional)
+stopwords = set(STOPWORDS)
+stopwords.add("example") # Add custom stopwords if needed
+    
+text=accident['WEATHERNAME']
+#print(text)
+
+# Create the WordCloud object with the mask
+wc = WordCloud(
+    background_color="white", # Or any other background color
+    max_words=2000,
+    mask=mask_image,
+    stopwords=stopwords,
+    contour_width=3, # Optional: Add a contour/border
+    contour_color='steelblue' # Optional: Contour color
+)
+    
+# Generate the word cloud
+wc.generate(text)
