@@ -14,6 +14,7 @@ print(accident)
 #There were 37654 accidents in 2023
 
 print(accident.isnull().sum())
+print(accident.describe())
 
 state_counts= accident ['STATENAME'].value_counts().sort_values(ascending=False)
 print(state_counts)
